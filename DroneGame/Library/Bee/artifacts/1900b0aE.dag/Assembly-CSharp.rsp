@@ -463,6 +463,7 @@
 -analyzer:"C:/Unity/6000.3.2f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Unity/6000.3.2f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Unity/6000.3.2f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
+"Assets/Scripts/AxisRotation.cs"
 "Assets/Scripts/Collectibles.cs"
 "Assets/Scripts/Collectible_Manager.cs"
 "Assets/Scripts/Collision_Action.cs"
