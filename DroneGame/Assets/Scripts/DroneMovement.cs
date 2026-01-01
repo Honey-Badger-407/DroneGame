@@ -5,17 +5,10 @@ public class DroneMovement : MonoBehaviour
     public float verticalSpeed = 6f;
 
     private bool Fov, Back, Left, Right, Up, Down;
-    public float tiltangle;
-    public float tiltspeed;
-    public float Rotationspeed;
-    float RotationDirection;
-    float targetRotation;
-    float SidetargetRotation;
     float maxSpeed;
     float forwardInput;
     float sideInput;
     float verticalInput;
-    float yaw;
     public Rigidbody rb;
 
     void Start()
@@ -28,8 +21,6 @@ public class DroneMovement : MonoBehaviour
         forwardInput=ForwardMovement();
         sideInput=SideMovement();
         verticalInput = VerticalMovement();
-        yaw = yaw + Rotationspeed * RotationDirection * Time.deltaTime;
-        ApplyTilt();
     }
     void FixedUpdate()
     {
@@ -45,17 +36,14 @@ public class DroneMovement : MonoBehaviour
     {
         if (Fov && !Back )
         {
-            LinearTiltAngle("Fov");
             return 1;
         }
         else if (!Fov && Back)
         {
-            LinearTiltAngle("Back");
             return -1;
         }
         else
         {
-            LinearTiltAngle("");
             return 0;
         }
     }
@@ -63,17 +51,14 @@ public class DroneMovement : MonoBehaviour
     {
         if (Left && !Right)
         {
-            SideTiltAngle("L");
             return -1;
         }
         else if (!Left && Right)
         {
-            SideTiltAngle("R");
             return 1;
         }
         else
         {
-            SideTiltAngle("");
             return 0;
         }
     }
@@ -124,56 +109,6 @@ public class DroneMovement : MonoBehaviour
         }
         else
             Down = false;
-        
-        
-        
-        
-        if (Input.GetKey(KeyCode.E))
-        {
-            RotationDirection = 1;
-        }
-        else if (Input.GetKey(KeyCode.Q))
-        {
-            RotationDirection = -1;
-        }
-        else
-        {
-            RotationDirection = 0;
-        }
     }
-    void LinearTiltAngle(string direction)
-    {
-        switch (direction)
-        {
-            case "Fov":
-                targetRotation = tiltangle;
-                break;
-            case "Back":
-                targetRotation =-tiltangle;
-                break;
-            default:
-                targetRotation =0f;
-                break;
-        }
-    }
-    void SideTiltAngle(string direction)
-    {
-        switch (direction)
-        {
-            case "R":
-                SidetargetRotation = -tiltangle;
-                break;
-            case "L":
-                SidetargetRotation = tiltangle;
-                break;
-            default:
-                SidetargetRotation =0f;
-                break;
-        }
-    }
-    void ApplyTilt()
-    {
-        Quaternion target = Quaternion.Euler(targetRotation,yaw, SidetargetRotation);
-        transform.rotation = Quaternion.Lerp(transform.rotation, target, tiltspeed * Time.deltaTime);
-    }
+
 }
