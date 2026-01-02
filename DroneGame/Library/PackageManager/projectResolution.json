@@ -39,16 +39,6 @@
       "source": "registry",
       "testable": false
     },
-    "com.unity.ai.navigation@2.0.9": {
-      "name": "com.unity.ai.navigation",
-      "displayName": "AI Navigation",
-      "resolvedPath": "E:\\DroneGame\\DroneGame\\Library\\PackageCache\\com.unity.ai.navigation@5218e4bf7edc",
-      "fingerprint": "5218e4bf7edc04fcad4ed3836c1c41aef334b996",
-      "editorCompatibility": "6000.0.0a1",
-      "version": "2.0.9",
-      "source": "registry",
-      "testable": false
-    },
     "com.unity.cinemachine@3.1.5": {
       "name": "com.unity.cinemachine",
       "displayName": "Cinemachine",

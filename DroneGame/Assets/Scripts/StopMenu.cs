@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class StopMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public GameObject DeathMenuUI;
     bool isPaused;
 
     void Update()
@@ -20,6 +21,15 @@ public class StopMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
+    }
+    public void OnDeath()
+    {
+        DeathMenuUI.SetActive(true);
+    }
+    public void OnRetry()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("HoopsGame");
     }
     public void PauseGame()
     {

@@ -23,44 +23,38 @@ public class DroneMovement : MonoBehaviour
         verticalInput = VerticalMovement();
     }
     void FixedUpdate()
-    {
-        Vector3 moveDir = transform.forward * forwardInput + transform.right * sideInput;
-        Vector3 verticalDir = transform.up * verticalInput;
+    {   
+        Vector3 forwardFlat = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+        Vector3 rightFlat = Vector3.ProjectOnPlane(transform.right, Vector3.up).normalized;
+        
+        Vector3 moveDir = forwardFlat * forwardInput + Vector3.up * verticalInput + rightFlat * sideInput;
+
+
         if (moveDir.sqrMagnitude > 1f)
+        {
             moveDir.Normalize();
+        }
+        
         rb.AddForce(moveDir * moveSpeed, ForceMode.Acceleration);
-        rb.AddForce(verticalDir * verticalSpeed, ForceMode.Acceleration);
         rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, maxSpeed);
     }
     int ForwardMovement()
     {
         if (Fov && !Back )
-        {
             return 1;
-        }
         else if (!Fov && Back)
-        {
             return -1;
-        }
         else
-        {
             return 0;
-        }
     }
     int SideMovement()
     {
         if (Left && !Right)
-        {
             return -1;
-        }
         else if (!Left && Right)
-        {
             return 1;
-        }
         else
-        {
             return 0;
-        }
     }
     int VerticalMovement()
     {
